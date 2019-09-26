@@ -32,6 +32,7 @@ const person = {
 
 Object.defineProperty(person, 'rate', {
 	enumerable: false,
+	configurable: false,
 });
 
 Object.defineProperty(person, 'salary', {
@@ -40,7 +41,7 @@ Object.defineProperty(person, 'salary', {
 });
 
 // Решение
-
+delete person.rate;
 person.rate = 30;
 
 // Предположим что сегодня 10 января, в этом случае это свойство возвращает число 300
