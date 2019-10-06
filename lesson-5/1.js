@@ -7,19 +7,17 @@
  * - Генерировать ошибку, если в качестве аргумента был передан не числовой тип.
  */
 
-
-const valid = val => {
-	const numb = typeof val !== 'number';
-	return numb;
+const valid = value => {
+	if (typeof value !== 'number') {
+		throw new Error('Error');
+	}
 }
 
+const f = (value) => {
+	valid(value);
 
-const f = (vel) => {
-	valid(vel);
-
-	return vel * vel;
+	return value * value * value;
 }
-
 // Решение
 
 console.log(f(2)); // 8

@@ -10,8 +10,19 @@
  * - Генерировать ошибку, если в качестве входного аргумента был передан не числовой тип;
  */
 
-// Решение
+const validation = value => {
+	if (typeof value !== 'number') {
+		throw new Error('Error');
+	}
+}
 
+const isPositive = (value) => {
+	validation(value);
+
+	return value >= 0;
+}
+
+// Решение
 isPositive(-3); // false
 isPositive(3); // true
 

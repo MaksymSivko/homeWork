@@ -14,7 +14,29 @@
  * Заметки:
  * - Возможно вам понадобится метод splice → https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
  */
+let i = 0;
 
+const validation = value => {
+	if (!Array.isArray(value)) {
+		throw new Error('Error');
+	}
+	if (value == '') {
+		throw new Error('Error');
+	}
+}
+
+const some = value => {
+	if (i <= value.length) {
+		console.log(value[i]);
+		i++;
+		some(value);
+	}
+}
+
+const f = (value) => {
+	validation(value);
+	some(value);
+}
 // Решение
 
 f([1, 2, 3]);

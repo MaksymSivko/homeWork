@@ -10,6 +10,18 @@
  * - Генерировать ошибку, если в качестве входного аргумента был передан не числовой тип;
  */
 
+const validation = value => {
+	if (typeof value !== 'number') {
+		throw new Error('Error');
+	}
+}
+
+const isEven = (value) => {
+	validation(value);
+
+	return (value % 2) == 0;
+}
+
 // Решение
 
 isEven(3); // false
