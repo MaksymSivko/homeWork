@@ -26,7 +26,7 @@ const validation = value => {
 }
 
 const some = value => {
-	if (i <= value.length) {
+	if (i <= value.length - 1) {
 		console.log(value[i]);
 		i++;
 		some(value);
