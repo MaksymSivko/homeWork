@@ -36,14 +36,22 @@ const validationNumb = (value) => {
 }
 
 const reducer = (value) => {
+	// Мне кажится так на много проще для понимания.
 	while (value.some(Array.isArray)) {
 		value = [].concat(...value);
 	}
+
+	//Но был и такой вариант но он запутаней на много как по мне (((
+	// if (Array.isArray(value)) {
+	// 	return value.reduce((sum, curr) => {
+	// 		return sum + reducer(curr);
+	// 	}, 0);
+	// }
 	return value;
 }
 
 const collect = (value) => {
-	validation(value);
+	validation(value)
 	validationNumb(reducer(value));
 
 	const newArr = reducer(value);
