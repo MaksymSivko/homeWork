@@ -22,6 +22,29 @@
 
 // Решение
 
+const myValidation = (...arg) => {
+
+	if (typeof arg[0] !== 'function') {
+		throw new Error('First argument not a function');
+	}
+
+	if (typeof arg[1] !== 'object') {
+		throw new Error('Second argument not a object');
+	}
+
+	if (Array.isArray(arg[1])) {
+		throw new Error('Second argument not a object (array)');
+	}
+}
+
+const bind = (fun, obj, ...arr) => {
+	const myArgum = [fun, obj, ...arr];
+
+	myValidation(...myArgum);
+
+	return fun.call(obj, arr[0], arr[1]);
+}
+
 function getName(greeting, message) {
 	return `${greeting} ${message} ${this.name}.`;
 }
@@ -37,6 +60,6 @@ const oliver = {
 const boundedGetName = bind(getName, oliver, 'Hello!', 'I am');
 
 console.log(user.getName('Hello!', 'My name is')); // Hello! My name is Walter.
-console.log(boundedGetName()); // Hello! I am Oliver.
+console.log(boundedGetName); // Hello! I am Oliver.
 
 exports.bind = bind;
