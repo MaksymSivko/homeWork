@@ -42,7 +42,7 @@ const bind = (fun, obj, ...arr) => {
 
 	myValidation(...myArgum);
 
-	return fun.call(obj, arr[0], arr[1]);
+	return () => fun.call(obj, arr[0], arr[1]);
 }
 
 function getName(greeting, message) {
@@ -60,6 +60,6 @@ const oliver = {
 const boundedGetName = bind(getName, oliver, 'Hello!', 'I am');
 
 console.log(user.getName('Hello!', 'My name is')); // Hello! My name is Walter.
-console.log(boundedGetName); // Hello! I am Oliver.
+console.log(boundedGetName()); // Hello! I am Oliver.
 
 exports.bind = bind;
