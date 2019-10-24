@@ -24,6 +24,34 @@
 
 // Решение
 
+const validationFunc = (value) => {
+	if (typeof value === 'undefined') {
+		throw new Error('callback at index 0 did not return any value.');
+	}
+}
+
+
+const calculateAdvanced = (...args) => {
+
+	const results = {
+		value: null,
+		error: {}
+	};
+
+	args.forEach((func, indx) => {
+		if (typeof func() === 'number') {
+			results.value = func(results.value);
+		}
+
+		if (!validationFunc(func())) {
+			console.log('lol');
+		}
+	});
+
+	return results;
+}
+
+
 const result = calculateAdvanced(
 	() => {},
 	() => {
@@ -33,15 +61,15 @@ const result = calculateAdvanced(
 	prevResult => {
 		return prevResult + 4;
 	},
-	() => {
-		throw new RangeError('Range is too big.');
-	},
+	// () => {
+	// 	throw new RangeError('Range is too big.');
+	// },
 	prevResult => {
 		return prevResult + 1;
 	},
-	() => {
-		throw new ReferenceError('ID is not defined.');
-	},
+	// () => {
+	// 	throw new ReferenceError('ID is not defined.');
+	// },
 	prevResult => {
 		return prevResult * 5;
 	},
