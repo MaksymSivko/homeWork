@@ -30,7 +30,6 @@ const validationFunc = (value) => {
 	}
 }
 
-
 const calculateAdvanced = (...args) => {
 
 	const results = {

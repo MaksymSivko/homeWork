@@ -18,7 +18,6 @@
  */
 
 // Решение
-
 const validationFunc = (value) => {
 	for (const func of value) {
 		if (typeof func !== 'function') {
@@ -51,7 +50,6 @@ const result = calculate(
 		return prevResult * 5;
 	},
 );
-
 
 console.log(result); // 55
 
