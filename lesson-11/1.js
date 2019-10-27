@@ -17,6 +17,32 @@
 
 // Решение
 
+const createNumberGenerator = () => {
+	let counts = null;
+	let randomNumb = null;
+	let randomArr = [];
+
+	return () => {
+
+		if (counts >= 100) {
+			throw new Error('There are no more numbers available !!!');
+		}
+
+		counts++;
+
+		function myRandom() {
+			randomNumb = Math.floor(Math.random() * 101);
+
+			if (randomArr.every(elem => elem !== randomNumb)) {
+				randomArr.push(randomNumb);
+				return randomNumb;
+			}
+			return myRandom();
+		}
+		return myRandom();
+	}
+}
+
 const TOTAL_ITERATIONS = 105;
 let invocations = 0;
 const generateNumber = createNumberGenerator();

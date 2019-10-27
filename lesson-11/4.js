@@ -27,12 +27,42 @@
  */
 
 // Решение
+const myValidation = (value) => {
+
+	if (typeof value !== 'function') {
+		throw new Error('First argument is not a function');
+	}
+}
+
+const createLogger = () => {
+	let arr = [];
+
+	return {
+		call(func, ...args) {
+			myValidation(func);
+
+			let obj = {
+				name: func.name,
+				in: args,
+				out: func(...args),
+			}
+			arr.push(obj);
+
+			return obj.out;
+		},
+		print() {
+			return arr;
+		}
+	}
+}
 
 const returnIdentity = n => n;
 const sum = (a, b) => a + b;
 const returnNothing = () => {};
 
 const logger1 = createLogger();
+// console.log(logger1.call('returnIdentity', 1)); // Error
+
 console.log(logger1.call(returnIdentity, 1)); // 1
 console.log(logger1.call(sum, 1, 2)); // 3
 console.log(logger1.print()); // [ { name: 'returnIdentity', in: [ 1 ], out: 1 }, { name: 'sum', in: [ 1, 2 ], out: 3 } ]

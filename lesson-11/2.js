@@ -11,6 +11,31 @@
 
 // Решение
 
+const createFibonacciGenerator = () => {
+	let prev = null,
+		next = null,
+		fibo = null,
+		counter = null;
+
+	return () => {
+		if (counter <= 1) {
+			counter++;
+			next = counter;
+			prev = 1;
+			return prev;
+		}
+		counter++;
+		if (counter == 3) {
+			return next;
+		}
+
+		fibo = prev + next;
+		prev = next;
+		next = fibo;
+		return fibo;
+	}
+}
+
 const generateFibonacciNumber = createFibonacciGenerator();
 
 console.log(generateFibonacciNumber()); // 1
