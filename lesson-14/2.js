@@ -22,10 +22,10 @@ function CleanerRobot(initialEnergy = 0 /* Изначальный заряд б�
 
 	const validationEnergy = (value) => {
 		if (value < 0) {
-			throw new Error('Error: New energy level can not be less than 0.');
+			throw new Error('New energy level can not be less than 0.');
 		}
 		if (value > MAX_ENERGY_CAPACITY) {
-			throw new Error('Error: New energy level can not be more than 100.');
+			throw new Error('New energy level can not be more than 100.');
 		}
 	}
 
@@ -40,7 +40,6 @@ function CleanerRobot(initialEnergy = 0 /* Изначальный заряд б�
 	}
 
 	function setEnergy() {
-		// Решение
 		for (const key in arguments) {
 			validationEnergy(arguments[key]);
 			energy = arguments[key];
