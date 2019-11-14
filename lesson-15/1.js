@@ -20,19 +20,35 @@
  * - в реализации метода delay(ms) обязательно использовать setTimeout.
  */
 
+// function sayHello() {
+// 	console.log('Hello!');
+// }
+
+// Function.prototype.delay = function (ms) {
+// 	setTimeout(function () {
+
+// 	}, ms);
+// }
+
+// sayHello.delay(1000); /* Выведет "Hello!" через 1 секунду */
+
+// function sum(a, b) {
+// 	console.log(a + b);
+// }
+// sum.delay(1000)(5, 2); /* Выведет 7 через 1 секунду. */
+
 function sayHello() {
-	console.log('Hello!');
+	console.log("Hello");
 }
 
-Function.prototype.delay = function (ms) {
+function sum(a, b) {
+	console.log(a + b);
+}
+
+Function.prototype.delay = (ms) => {
 	setTimeout(function () {
 
 	}, ms);
 }
 
-sayHello.delay(1000); /* Выведет "Hello!" через 1 секунду */
-
-function sum(a, b) {
-	console.log(a + b);
-}
-// sum.delay(1000)(5, 2); /* Выведет 7 через 1 секунду. */
+sayHello.delay();
