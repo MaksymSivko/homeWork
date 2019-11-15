@@ -16,41 +16,41 @@
  */
 // Решение
 const validation = (...args) => {
-	for (const numb of args) {
-		if (typeof numb !== 'number') {
-			throw new Error('Argument must be a number');
-		}
-	}
-}
+    for (const numb of args) {
+        if (typeof numb !== 'number') {
+            throw new Error('Argument must be a number');
+        }
+    }
+};
 
 const postpone = (start, end, delay) => {
-	validation(start, end, delay);
+    validation(start, end, delay);
 
-	function timeUp(numb, delay) {
-		setTimeout(() => {
-			console.log(numb);
-		}, delay * numb);
-	}
+    function timeUp(numb, delay) {
+        setTimeout(() => {
+            console.log(numb);
+        }, delay * numb);
+    }
 
-	function timeDown(numb, delay) {
-		setTimeout(() => {
-			console.log(numb);
-		}, delay - (1000 * numb));
-	}
+    function timeDown(numb, delay) {
+        setTimeout(() => {
+            console.log(numb);
+        }, delay - 1000 * numb);
+    }
 
-	if (start <= end) {
-		for (let i = start; i <= end; i++) {
-			timeUp(i, delay);
-		}
-	}
+    if (start <= end) {
+        for (let i = start; i <= end; i++) {
+            timeUp(i, delay);
+        }
+    }
 
-	if (start >= end) {
-		delay = delay * (start + 1);
-		for (let i = start; i >= end; i--) {
-			timeDown(i, delay);
-		}
-	}
-}
+    if (start >= end) {
+        delay = delay * (start + 1);
+        for (let i = start; i >= end; i--) {
+            timeDown(i, delay);
+        }
+    }
+};
 
 postpone(1, 3, 1000);
 // 1
