@@ -18,7 +18,7 @@
 const validation = (...args) => {
     for (const numb of args) {
         if (typeof numb !== 'number') {
-            throw new Error('Argument must be a number');
+            throw new Error('Error: Argument must be a number');
         }
     }
 };
