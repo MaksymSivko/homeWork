@@ -31,17 +31,21 @@ class Customers {
     }
 
     [Symbol.iterator]() {
-        const custom = this.customerList;
+        const custom = [];
         let index = 0;
+
+        for (const numb in this.customerList) {
+            if (this.customerList[numb].hasOwnProperty('verified')) {
+                custom.push(this.customerList[numb]);
+            }
+        }
 
         return {
             next() {
                 let result = { value: null, done: true };
 
                 if (index < custom.length) {
-                    if (custom[index].hasOwnProperty('verified')) {
-                        result.value = custom[index];
-                    }
+                    result.value = custom[index];
                     result.done = false;
                     index++;
                 }
