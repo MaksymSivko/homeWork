@@ -10,6 +10,32 @@
 
 // Решение
 
+class Customers {
+    constructor() {
+        this.customerList = [];
+    }
+
+    add(...args) {
+        if (typeof args !== 'object') {
+            throw new Error('Error: obj');
+        }
+        for (const key in args) {
+            if (!args[key].hasOwnProperty('name')) {
+                throw new Error('Error: name');
+            }
+            this.customerList.push(...args);
+        }
+    }
+
+    *[Symbol.iterator]() {
+        for (const obj of this.customerList) {
+            if (obj.hasOwnProperty('verified')) {
+                yield obj;
+            }
+        }
+    }
+}
+
 // Пример использования
 const customers = new Customers();
 customers.add({ name: 'Alex' });

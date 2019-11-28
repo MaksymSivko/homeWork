@@ -13,6 +13,43 @@
 */
 
 // Решение
+class Customers {
+    constructor() {
+        this.customerList = [];
+    }
+
+    add(...args) {
+        if (typeof args !== 'object') {
+            throw new Error('Error: obj');
+        }
+        for (const key in args) {
+            if (!args[key].hasOwnProperty('name')) {
+                throw new Error('Error: name');
+            }
+            this.customerList.push(...args);
+        }
+    }
+
+    [Symbol.iterator]() {
+        const custom = this.customerList;
+        let index = 0;
+
+        return {
+            next() {
+                let result = { value: null, done: true };
+
+                if (index < custom.length) {
+                    if (custom[index].hasOwnProperty('verified')) {
+                        result.value = custom[index];
+                    }
+                    result.done = false;
+                    index++;
+                }
+                return result;
+            }
+        };
+    }
+}
 
 // Пример использования:
 const customers = new Customers();
