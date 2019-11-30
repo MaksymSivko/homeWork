@@ -15,21 +15,23 @@ class Customers {
         this.customerList = [];
     }
 
-    add(...args) {
+    add(args) {
         if (typeof args !== 'object') {
             throw new Error('Error: obj');
         }
-        for (const key in args) {
-            if (!args[key].hasOwnProperty('name')) {
-                throw new Error('Error: name');
-            }
-            this.customerList.push(...args);
+
+        if (!args.hasOwnProperty('name')) {
+            throw new Error('Error: name');
         }
+
+        // this.customerList = this.customerList.concat(args);
+        //Можно и concat но push быстрей )))
+        this.customerList.push(args);
     }
 
     *[Symbol.iterator]() {
         for (const obj of this.customerList) {
-            if (obj.hasOwnProperty('verified')) {
+            if (obj.verified === true) {
                 yield obj;
             }
         }

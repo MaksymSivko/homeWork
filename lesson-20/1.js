@@ -18,27 +18,25 @@ class Customers {
         this.customerList = [];
     }
 
-    add(...args) {
+    add(args) {
         if (typeof args !== 'object') {
             throw new Error('Error: obj');
         }
-        for (const key in args) {
-            if (!args[key].hasOwnProperty('name')) {
-                throw new Error('Error: name');
-            }
-            this.customerList.push(...args);
+
+        if (!args.hasOwnProperty('name')) {
+            throw new Error('Error: name');
         }
+        // this.customerList = this.customerList.concat(args);
+        //Можно и concat но push быстрей )))
+        this.customerList.push(args);
     }
 
     [Symbol.iterator]() {
-        const custom = [];
         let index = 0;
 
-        for (const numb in this.customerList) {
-            if (this.customerList[numb].hasOwnProperty('verified')) {
-                custom.push(this.customerList[numb]);
-            }
-        }
+        const custom = this.customerList.filter(
+            value => value.verified === true
+        );
 
         return {
             next() {
@@ -59,7 +57,7 @@ class Customers {
 const customers = new Customers();
 customers.add({ name: 'Alex' });
 customers.add({ name: 'Victor' });
-customers.add({ name: 'Marcus' });
+customers.add({ name: 'Marcus', verified: false });
 customers.add({ name: 'Andrii', verified: true });
 customers.add({ name: 'Marco', verified: true });
 customers.add({ name: 'Oliver' });
