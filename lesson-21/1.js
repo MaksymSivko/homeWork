@@ -18,7 +18,7 @@
 
 function isCustomerVerified(value) {
     return new Promise((resolve, reject) => {
-        if (value.hasOwnProperty('verified')) {
+        if (value.verified === true) {
             resolve(true);
         }
         reject(`Customer is not verified`);

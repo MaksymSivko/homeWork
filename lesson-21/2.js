@@ -18,22 +18,18 @@
 function getCustomers(customers, countries) {
     return new Promise((resolve, reject) => {
         for (const cust in customers) {
-            if (customers[cust].hasOwnProperty('verified')) {
-                /* VERSION 1 */
-                for (const count in countries) {
-                    if (countries[count].id === customers[cust].id) {
-                        const newCast = {
+            if (customers[cust].verified === true) {
+                for (const index in countries) {
+                    if (countries[index].id === customers[cust].id) {
+                        resolve({
                             ...customers[cust],
-                            ...countries[count]
-                        };
-                        resolve(newCast);
+                            ...countries[index]
+                        });
                     }
                     reject(
                         `We don't have information about country for this customer: ${customers.name}`
                     );
                 }
-                /*  VERSION 2 */
-                //Можно создать новый then и там описать все что ниже но я не уверен что это правильно
             }
         }
     });
